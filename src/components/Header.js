@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css'
 import { LOGO_URL } from '../utils/LOGO';
@@ -7,6 +7,13 @@ import Restaurantcard from './Restaurantcard';
 import Cart from './Cart';
 
 export default Header =() =>{
+
+    const [loginState, setLoginState] = useState('Login');
+
+    const handleLogin = () => {
+        {loginState ==='Login' ? setLoginState('Logout') : setLoginState('Login')}
+    }
+
     return(
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
@@ -30,6 +37,10 @@ export default Header =() =>{
                     <li className="nav-item">
                         <Link className="nav-link" to="/cart">Cart</Link>
                     </li>
+                    <li className='nav-item'>
+                        <p className='nav-link' onClick={handleLogin} style={{cursor: 'pointer'}}>{loginState}</p>
+                    </li>
+                    
                 </ul>
                 </div>
             </div>
